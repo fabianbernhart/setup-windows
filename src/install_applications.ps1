@@ -19,7 +19,7 @@ $installers = @(
     # Add more objects as needed
 ) 
 
-function Install-Setup-Silent{
+function Install-Setup {
     param (
         [string]$path
     )
