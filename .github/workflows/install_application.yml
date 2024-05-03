@@ -12,4 +12,4 @@ jobs:
     - name: Run PowerShell script
       shell: pwsh
       run: |
-        /src/install_applications.ps1
+        & "${{ github.workspace }}/src/install_applications.ps1"
