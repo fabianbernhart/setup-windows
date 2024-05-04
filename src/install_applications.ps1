@@ -1,6 +1,5 @@
 # get Application from URL and install them silently.
 
-
 $TempFolderPath = "C:\temp"
 $SetupFolderPath = "$TempFolderPath\.setup"
 
@@ -13,8 +12,13 @@ New-Item -ItemType Directory -Path $SetupFolderPath -ErrorAction SilentlyContinu
 $installers = @(
     [PSCustomObject]@{
         URL = "https://download.mozilla.org/?product=firefox-latest&os=win&lang=en-US"
-        destionationPath = "$SetupFolderPath\firefox_setup.exe"
+        destinationPath = "$SetupFolderPath\firefox_setup.exe"
         name = "Firefox"
+    },
+    [PSCustomObject]@{
+        URL = "https://www.win-rar.com/fileadmin/winrar-versions/partners/ge3/winrar-x64-700d.exe"
+        destinationPath = "$SetupFolderPath\winrar_setup.exe"
+        name = "Winrar"
     }
     # Add more objects as needed
 ) 
@@ -40,9 +44,9 @@ Write-Host "INFO: Destination Folder $($SetupFolderPath)"
 foreach ($installer in $installers) {
     Write-Host "INFO: installing  $($installer.name) ..."
     
-    Invoke-WebRequest -Uri $installer.URL -OutFile $installer.destionationPath
+    Invoke-WebRequest -Uri $installer.URL -OutFile $installer.destinationPath
 
-    Install-Setup -Path $installer.destionationPath
+    Install-Setup -Path $installer.destinationPath
 
     Write-Host "INFO: Installed $($installer.name) succesfully..."
 }
